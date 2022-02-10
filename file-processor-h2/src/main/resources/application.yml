@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: file-processor-h2-batch
+
+file:
+  input: coffee-list.csv
