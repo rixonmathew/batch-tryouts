@@ -1,12 +1,12 @@
 spring:
   application:
     name: data-gen-oracle-batch
-
----
-spring:
-  config:
-    activate:
-      on-profile: local-21c-ol8
+#  batch:
+#    job:
+#      enabled: true
+#    jdbc:
+#      initialize-schema: EMBEDDED
+#      schema: classpath:org/springframework/batch/core/schema-hsqldb.sql
   datasource:
     username: rixon
     password: oracle
@@ -20,19 +20,17 @@ spring:
       pool-name: oracle19c
       connection-test-query: select 1 from dual
       data-source-properties:
-        "[v$session.program]": data-access-tests
+        "[v$session.program]": batch-tryout-oracle
       idle-timeout: 120000
   jpa:
     database-platform: org.hibernate.dialect.Oracle12cDialect
     show-sql: false
     hibernate:
       ddl-auto: validate
-server:
-  port: 9798
 
 logging:
   pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"
+    console: "%d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger{36}.%M - %msg%n"
     level:
       - org.hibernate.SQL: error
 
